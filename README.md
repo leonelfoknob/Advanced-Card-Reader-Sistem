@@ -10,3 +10,11 @@ sleep 10 : is the delay that my app will wait after boot before running it is ne
 export DISPLAY=:0 && export XAUTHORITY=/home/leonel/.Xauthority : necessery to tell to raspberry pi that app will use gui
 sudo /usr/bin/python3 : is the path to use python3
 /home/leonel/card_main/scripts/main_1.py >> /home/leonel/script_log.txt 2>&1 : is the location of my app and also create log file for any mistake or issue when app begin.
+
+## web gui
+![registration_form](https://github.com/user-attachments/assets/74c56fb5-b4b7-4dae-be16-33417736798b)
+![search_user_and_update_credit](https://github.com/user-attachments/assets/ccb168c8-6690-4b2e-bba8-f5b018c8d882)
+
+
+
+
