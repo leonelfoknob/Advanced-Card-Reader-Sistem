@@ -15,6 +15,9 @@ sudo /usr/bin/python3 : is the path to use python3
 ![registration_form](https://github.com/user-attachments/assets/74c56fb5-b4b7-4dae-be16-33417736798b)
 ![search_user_and_update_credit](https://github.com/user-attachments/assets/ccb168c8-6690-4b2e-bba8-f5b018c8d882)
 
+## gui for registration reader
+![read_uid_for_registration](https://github.com/user-attachments/assets/03d1e889-059f-4f60-ad14-0e645cdaf6c9)
+
 
 
 
