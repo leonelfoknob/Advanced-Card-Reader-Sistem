@@ -1,7 +1,7 @@
 # Advanced-Card-Reader-Sistem
 Advanced Card Reader Sistem
 
-##  all information about project will be share soon for any question feel free contact me.
+##  all information about project will be share soon for any question feel free to contact me.
 
 
 To make sistem run automaticaly after raspberry pi boot i use crontab -e command and in the bottom of file i add : @reboot sleep 10 && export DISPLAY=:0 && export XAUTHORITY=/home/leonel/.Xauthority && sudo /usr/bin/python3 /home/leonel/card_main/scripts/main_1.py >> /home/leonel/script_log.txt 2>&1
