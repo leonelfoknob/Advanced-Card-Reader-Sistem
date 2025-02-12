@@ -14,9 +14,9 @@ import threading
 
 # Database connection
 Host = "localhost"
-User = "admin"
-Password = "Leonel@01"
-database = "hido_db"
+User = "******"
+Password = "*******"
+database = "********"
 
 conn = pymysql.connect(host=Host, user=User, password=Password, db=database)
 cur = conn.cursor()
