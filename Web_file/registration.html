@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information Form</title>
+
+    <style>
+        /* Basic Reset */
+        /* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Adjusted for better alignment */
+    height: 100%;
+    margin: 0;
+}
+
+h1 {
+    color: #333;
+    font-size: 2em;
+    margin-bottom: 30px; /* Added margin for spacing */
+    text-align: center;
+    width: 100%;
+}
+
+/* Form Styling */
+form {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    margin: 0;
+}
+
+label {
+    font-size: 1.1em;
+    margin-top: 15px;
+    display: block;
+    text-align: left;
+    color: #555;
+}
+
+input[type="text"], input[type="number"], input[type="tel"], input[type="radio"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box;
+    margin-bottom: 15px; /* Added margin for better spacing */
+}
+
+input[type="radio"] {
+    width: auto;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1.1em;
+    padding: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    margin-top: 15px; /* Spacing adjusted */
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#output {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #e7f7e7;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    font-size: 1.1em;
+    color: #333;
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 20px; /* Increased margin for better spacing */
+}
+
+.radio-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.radio-group label {
+    margin: 0 15px;
+}
+
+@media screen and (max-width: 600px) {
+    form {
+        padding: 20px;
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 1.6em;
+    }
+
+    input[type="text"], input[type="number"], input[type="tel"], button {
+        font-size: 1em;
+        padding: 10px;
+    }
+
+    button {
+        padding: 12px;
+        font-size: 1.1em;
+    }
+
+    #output {
+        padding: 15px;
+        font-size: 1em;
+    }
+}
+
+
+    </style>
+
+    <script>
+        // JavaScript to get UID from the Python script
+        function getUid() {
+            document.getElementById("getUidBtn").disabled = true;
+            fetch('get_card_id.php')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("uid").value = data.trim();  // Set the UID field
+                    document.getElementById("getUidBtn").disabled = false;
+                });
+        }
+
+        // JavaScript to print entered data
+        function printData() {
+            let name = document.getElementById("name").value;
+            let surname = document.getElementById("surname").value;
+            let age = document.getElementById("age").value;
+            let branch = document.querySelector('input[name="branch"]:checked').value;
+            let motherName = document.getElementById("motherName").value;
+            let fatherName = document.getElementById("fatherName").value;
+            let phoneNumber = document.getElementById("phoneNumber").value;
+            let nationalId = document.getElementById("nationalId").value;
+            let uid = document.getElementById("uid").value;
+
+            // Reprint data on the page
+            document.getElementById("output").innerHTML = `
+                <h2>Entered Information:</h2>
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Surname:</strong> ${surname}</p>
+                <p><strong>Age:</strong> ${age}</p>
+                <p><strong>Branch:</strong> ${branch}</p>
+                <p><strong>Mother's Name:</strong> ${motherName}</p>
+                <p><strong>Father's Name:</strong> ${fatherName}</p>
+                <p><strong>Phone Number:</strong> ${phoneNumber}</p>
+                <p><strong>National ID:</strong> ${nationalId}</p>
+                <p><strong>UID Card:</strong> ${uid}</p>
+            `;
+        }
+    </script>
+</head>
+<body>
+
+    <h1>User Information Form</h1>
+
+    <!-- The Form to Collect User Data -->
+    <form id="userForm" method="POST" action="save_user_data.php">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br>
+        </div>
+
+        <div class="form-group">
+            <label for="surname">Surname:</label>
+            <input type="text" id="surname" name="surname" required><br>
+        </div>
+
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required><br>
+        </div>
+
+        <div class="form-group radio-group">
+            <label>Branch:</label>
+            <input type="radio" id="gymnastik" name="branch" value="Gymnastik" required>
+            <label for="gymnastik">Gymnastik</label>
+            <input type="radio" id="basketball" name="branch" value="Basketball">
+            <label for="basketball">Basketball</label><br><br>
+        </div>
+
+        <div class="form-group">
+            <label for="motherName">Mother's Name:</label>
+            <input type="text" id="motherName" name="motherName" required><br>
+        </div>
+
+        <div class="form-group">
+            <label for="fatherName">Father's Name:</label>
+            <input type="text" id="fatherName" name="fatherName" required><br>
+        </div>
+
+        <div class="form-group">
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="tel" id="phoneNumber" name="phoneNumber" required><br>
+        </div>
+
+        <div class="form-group">
+            <label for="nationalId">National ID Number:</label>
+            <input type="text" id="nationalId" name="nationalId" required><br>
+        </div>
+
+        <div class="form-group"> <!-- credit -->
+            <label for="credit">Initial Credit:</label>
+            <input type="number" id="credit" name="credit" value="0" required><br>
+        </div>
+
+        <div class="form-group">
+            <label for="nationalId">UID Card:</label>
+            <input type="text" id="uid" name="uid" required><br>
+        </div>
+
+        <!-- The field for UID, will be populated by the "Get UID" button 
+        <div class="form-group">
+            <label for="uid">UID Card:</label>
+            <input type="text" id="uid" name="uid" readonly><br><br>
+        </div>
+
+        <div class="form-group">
+            <button type="button" id="getUidBtn" onclick="getUid()">Get UID</button><br><br>
+        </div>-->
+
+        <div class="form-group">
+            <!-- Save button that submits the form -->
+            <button type="submit">Save</button>
+        </div>
+    </form>
+
+    <!-- Display the entered data -->
+    <div id="output"></div>
+
+</body>
+</html>
